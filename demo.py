@@ -62,10 +62,10 @@ def parse_args():
                       nargs=argparse.REMAINDER)
   parser.add_argument('--load_dir', dest='load_dir',
                       help='directory to load models',
-                      default="/srv/share/jyang375/models")
+                      default="data/pretrained_model")
   parser.add_argument('--image_dir', dest='image_dir',
                       help='directory to load images for demo',
-                      default="images")
+                      default="images/")
   parser.add_argument('--cuda', dest='cuda',
                       help='whether use CUDA',
                       action='store_true')
@@ -192,7 +192,8 @@ if __name__ == '__main__':
     checkpoint = torch.load(load_name)
   else:
     checkpoint = torch.load(load_name, map_location=(lambda storage, loc: storage))
-  fasterRCNN.load_state_dict(checkpoint['model'])
+  # fasterRCNN.load_state_dict(checkpoint['model'])
+  fasterRCNN.load_state_dict(checkpoint)
   if 'pooling_mode' in checkpoint.keys():
     cfg.POOLING_MODE = checkpoint['pooling_mode']
 
