@@ -15,7 +15,7 @@ import argparse
 import pprint
 import pdb
 import time
-
+import cv2
 import torch
 from torch.autograd import Variable
 import torch.nn as nn

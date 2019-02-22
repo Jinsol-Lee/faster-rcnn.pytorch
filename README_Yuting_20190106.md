@@ -27,6 +27,6 @@ Test:
 ```
 $ python test_net.py --dataset fingernail_olives --net vgg16 \
                    --checksession 1 --checkepoch 2 --checkpoint 655 \
-                   --cuda  --vis
+                   --cuda  --viz
 
 ```
