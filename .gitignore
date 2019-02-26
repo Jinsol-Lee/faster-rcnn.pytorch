@@ -3,6 +3,11 @@ logs/*
 models/*
 output/*
 result/*
+result_20190106_testset/*
+
+test_net_no_annotation.py
+check_result.py
+lib/datasets/fingernail_olives_test.py
 
 # READ THIS BEFORE YOU REFACTOR ME
 #

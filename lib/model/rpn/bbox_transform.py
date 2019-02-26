@@ -41,10 +41,10 @@ def bbox_transform_batch(ex_rois, gt_rois):
         ex_ctr_x = ex_rois[:, 0] + 0.5 * ex_widths
         ex_ctr_y = ex_rois[:, 1] + 0.5 * ex_heights
 
-        gt_widths = gt_rois[:, :, 2] - gt_rois[:, :, 0] + 1.0
-        gt_heights = gt_rois[:, :, 3] - gt_rois[:, :, 1] + 1.0
-        gt_ctr_x = gt_rois[:, :, 0] + 0.5 * gt_widths
-        gt_ctr_y = gt_rois[:, :, 1] + 0.5 * gt_heights
+        gt_widths = torch.abs(gt_rois[:, :, 2] - gt_rois[:, :, 0]) + 1.0
+        gt_heights = torch.abs(gt_rois[:, :, 3] - gt_rois[:, :, 1]) + 1.0
+        gt_ctr_x = torch.min(gt_rois[:, :, 0], gt_rois[:,:,2]) + 0.5 * gt_widths
+        gt_ctr_y = torch.min(gt_rois[:, :, 1], gt_rois[:,:,3]) + 0.5 * gt_heights
 
         targets_dx = (gt_ctr_x - ex_ctr_x.view(1,-1).expand_as(gt_ctr_x)) / ex_widths
         targets_dy = (gt_ctr_y - ex_ctr_y.view(1,-1).expand_as(gt_ctr_y)) / ex_heights

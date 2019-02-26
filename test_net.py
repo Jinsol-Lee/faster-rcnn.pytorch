@@ -112,7 +112,7 @@ if __name__ == '__main__':
   elif args.dataset == "fingernail_olives":
       args.imdb_name = "olives_2019_trainval"
       args.imdbval_name = "olives_2019_test"
-      args.set_cfgs = ['ANCHOR_SCALES', '[8, 16, 32]', 'ANCHOR_RATIOS', '[0.5,1,2]', 'MAX_NUM_GT_BOXES', '20']
+      args.set_cfgs = ['ANCHOR_SCALES', '[8, 16, 32, 64, 128, 256]', 'ANCHOR_RATIOS', '[0.5,1,2]', 'MAX_NUM_GT_BOXES', '20']
   elif args.dataset == "pascal_voc_0712":
       args.imdb_name = "voc_2007_trainval+voc_2012_trainval"
       args.imdbval_name = "voc_2007_test"
@@ -286,7 +286,7 @@ if __name__ == '__main__':
               cls_boxes = pred_boxes[inds, :]
             else:
               cls_boxes = pred_boxes[inds][:, j * 4:(j + 1) * 4]
-            
+
             cls_dets = torch.cat((cls_boxes, cls_scores.unsqueeze(1)), 1)
             # cls_dets = torch.cat((cls_boxes, cls_scores), 1)
             cls_dets = cls_dets[order]
@@ -316,10 +316,12 @@ if __name__ == '__main__':
       sys.stdout.flush()
 
       if vis:
+          print('Wring result file {:07}'.format(i))
           cv2.imwrite('result/%i.png'%i, im2show)
           # pdb.set_trace()
-          #cv2.imshow('test', im2show)
+          # cv2.imshow('test', im2show)
           #cv2.waitKey(0)
+        # print(all_boxes)
 
   with open(det_file, 'wb') as f:
       pickle.dump(all_boxes, f, pickle.HIGHEST_PROTOCOL)
