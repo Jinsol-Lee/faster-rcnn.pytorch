@@ -315,13 +315,13 @@ if __name__ == '__main__':
           .format(i + 1, num_images, detect_time, nms_time))
       sys.stdout.flush()
 
+      image_name = imdb.image_path_at(i).split('/')[-1].split('.')[0]
       if vis:
-          print('Wring result file {:07}'.format(i))
-          cv2.imwrite('result/%i.png'%i, im2show)
+          print('Wring result file %s'%image_name)
+          cv2.imwrite('result/%s.png'%image_name, im2show)
           # pdb.set_trace()
           # cv2.imshow('test', im2show)
-          #cv2.waitKey(0)
-        # print(all_boxes)
+          cv2.waitKey(0)
 
   with open(det_file, 'wb') as f:
       pickle.dump(all_boxes, f, pickle.HIGHEST_PROTOCOL)

@@ -5,9 +5,10 @@ output/*
 result/*
 result_20190106_testset/*
 
-test_net_no_annotation.py
 check_result.py
 lib/datasets/fingernail_olives_test.py
+test_gen_xml.sh
+test_net_gen_xml.py
 
 # READ THIS BEFORE YOU REFACTOR ME
 #
